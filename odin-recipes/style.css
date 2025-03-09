@@ -1,0 +1,82 @@
+body {
+    font-family: Helvetica, sans-serif;
+  }
+
+ol {
+  background-color: blanchedalmond;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+ul, p {
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  text-align: left;
+  list-style-position: inside;
+}
+  
+img {
+  background-color: darkblue;
+  display: block;
+  box-sizing: border-box;
+  height: auto;
+  width: 400px;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 24px;
+}
+
+.title-container {
+  background-color: darkblue;
+  color: white;
+  box-sizing: border-box;
+  height: 80px;
+  width: 700px;
+  padding: 10px;
+  margin: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 48px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dessert {
+  background-color: red;
+  color: aliceblue;
+}
+
+.heading {
+  font-style: italic;
+  box-sizing: border-box;
+  height: 20px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.heading.cals {
+  background-color: black;
+  color: white;
+}
+
+
