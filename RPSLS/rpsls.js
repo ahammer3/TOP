@@ -6,29 +6,29 @@ function startGame() {
 }
 
 const rules = {
-    Rock: ["Scissors", "Lizard"],
-    Paper: ["Rock", "Spock"],
-    Scissors: ["Paper", "Lizard"],
-    Lizard: ["Spock", "Paper"],
-    Spock: ["Scissors", "Rock"]
+    Danny: ["Sal", "Vinny"],
+    Jason: ["Danny", "Channy"],
+    Sal: ["Jason", "Vinny"],
+    Vinny: ["Channy", "Jason"],
+    Channy: ["Sal", "Danny"]
   };
 
 const ruleDescriptions = {
-    "Scissors:Paper": "Scissors cuts Paper",
-    "Paper:Rock": "Paper covers Rock",
-    "Rock:Lizard": "Rock crushes Lizard",
-    "Lizard:Spock": "Lizard poisons Spock",
-    "Spock:Scissors": "Spock smashes Scissors",
-    "Scissors:Lizard": "Scissors decapitates Lizard",
-    "Lizard:Paper": "Lizard eats Paper",
-    "Paper:Spock": "Paper disproves Spock",
-    "Spock:Rock": "Spock vaporizes Rock",
-    "Rock:Scissors": "(as it always has) Rock crushes Scissors",
-    "Rock:Rock": "Rock ties Rock",
-    "Scissors:Scissors": "Scissors ties Scissors",
-    "Lizard:Lizard": "Lizard ties Lizard",
-    "Spock:Spock": "Spock ties Spock",
-    "Paper:Paper": "Paper ties Paper",
+    "Sal:Jason": "Sal loses hope for Jason",
+    "Jason:Danny": "Jason calls out on Danny",
+    "Danny:Vinny": "Danny reverse jinxes Vinny",
+    "Vinny:Channy": "Vinny trolls Channy",
+    "Channy:Sal": "Channy disgusts Sal with a food story",
+    "Sal:Vinny": "Sal piles on work for Vinny",
+    "Vinny:Jason": "Vinny steals Jason's ace",
+    "Jason:Channy": "Jason confuses Channy",
+    "Channy:Danny": "Channy ignores Danny",
+    "Danny:Sal": "(as it always has) Danny b8s Sal",
+    "Danny:Danny": "Danny speaks to himself",
+    "Sal:Sal": "Sal plays soccer by himself",
+    "Vinny:Vinny": "Vinny is ALL G by himself",
+    "Channy:Channy": "Channy makes another taco by himself",
+    "Jason:Jason": "Jason trapped in his woes by himself",
   };
 
   let yourScore = 0;
