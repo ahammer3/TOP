@@ -181,3 +181,59 @@ svg {
     font-weight: normal;
     color: #333;
   }
+
+  @media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .left-panel,
+  .game-container {
+    width: 90vw;
+    height: auto;
+    margin: 1rem 0;
+  }
+
+  .scoreboard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score-box {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .sidebar {
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sidebar h1 {
+    font-size: 1.5rem;
+  }
+
+  .sidebar p,
+  .rule-log {
+    font-size: 0.95rem;
+  }
+
+  .game-container {
+    margin-top: 2rem;
+  }
+
+  .game-inner {
+    width: 90vw;
+    height: 90vw;
+    position: relative;
+  }
+
+  button {
+    width: 15vw;
+    height: 15vw;
+    font-size: 4vw;
+  }
+}
