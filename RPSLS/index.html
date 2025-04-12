@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RPSLS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<div class="overlay" id="start-overlay" style="display: flex;">
+  <div class="game-over-box">
+    <h2>Welcome to Rock Paper Scissors Lizard Spock</h2>
+    <button onclick="startGame()">Start Game</button>
+  </div>
+</div>
 <body>
+    <div class="top-bar">Rock Paper Scissors Lizard Spock</div>
+    <div class="main-wrapper">
+      <div class="main-content">
+        <div class="left-panel">
+            <div class="scoreboard">
+                <div class="score-box" id="your-score">Your Score: 0</div>
+                <div class="score-box" id="your-selection">You: -</div>
+                <div class="score-box" id="cpu-score">CPU Score: 0</div>
+                <div class="score-box" id="cpu-selection">CPU: -</div>
+            </div>
+            <div class="sidebar">
+                <h2>Rock Paper Scissors Lizard Spock</h2>
+                <!--  <p>Remember:<br><br>Scissors cuts Paper<br>Paper covers Rock<br>Rock crushes Lizard<br>Lizard poisons Spock<br>Spock smashes Scissors<br>Scissors decapitates Lizard<br>Lizard eats Paper<br>Paper disproves Spock<br>Spock vaporizes Rock<br>(and as it always has) Rock crushes Scissors</p> -->
+                <div id="rule-log" class="rule-log"></div>
+              </div>
+        </div>
+        <div class="game-container">
+            <svg viewBox="0 0 100 100">
+            <!-- Inner Arrows -->
+            <line x1="50" y1="0" x2="28" y2="67" stroke="#e74c3c" stroke-width="1"/> <!-- Rock to Scissors -->
+            <line x1="15" y1="25" x2="72" y2="67" stroke="#3498db" stroke-width="1"/> <!-- Paper to Spock -->
+            <line x1="28" y1="67" x2="85" y2="25" stroke="#f1c40f" stroke-width="1"/> <!-- Scissors to Lizard -->
+            <line x1="85" y1="25" x2="15" y2="25" stroke="#2ecc71" stroke-width="1"/> <!-- Lizard to Paper -->
+            <line x1="72" y1="67" x2="50" y2="0" stroke="#9b59b6" stroke-width="1"/> <!-- Spock to Rock -->
+
+            <!-- Outer Arrows -->
+            <line x1="50" y1="0" x2="85" y2="25" stroke="#e74c3c" stroke-width="1"/> <!-- Rock to Lizard -->
+            <line x1="15" y1="25" x2="50" y2="0" stroke="#3498db" stroke-width="1"/> <!-- Paper to Rock -->
+            <line x1="28" y1="67" x2="15" y2="25" stroke="#f1c40f" stroke-width="1"/> <!-- Scissors to Paper -->
+            <line x1="85" y1="25" x2="72" y2="67" stroke="#2ecc71" stroke-width="1"/> <!-- Lizard to Spock -->
+            <line x1="72" y1="67" x2="28" y2="67" stroke="#9b59b6" stroke-width="1"/> <!-- Spock to Scissors -->
+            </svg>
+
+            <!-- Buttons -->
+            <button class="rock" id="rock" style="top: 0%; left: 50%;" onclick="makeMove('Rock')">Rock</button>
+            <button class="lizard" id="lizard" style="top: 25%; left: 85%;" onclick="makeMove('Lizard')">Lizard</button>
+            <button class="spock" id="spock" style="top: 67%; left: 72%;" onclick="makeMove('Spock')">Spock</button>
+            <button class="scissors" id="scissors" style="top: 67%; left: 28%;" onclick="makeMove('Scissors')">Scissors</button>
+            <button class="paper" id="paper" style="top: 25%; left: 15%;" onclick="makeMove('Paper')">Paper</button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="game-over-overlay">
+        <div class="game-over-box">
+          <h2 id="game-over-message"></h2>
+          <button onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
     <script src="rpsls.js"></script>
+    <div class="footer-bar">©ahammer3</div>
 </body>
 </html>

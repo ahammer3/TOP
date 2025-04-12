@@ -1,139 +1,97 @@
-console.log("Hello World")
+let gameStarted = false;
 
-console.log("Rock Paper Scissors Lizard Spock GO First to 5");
-
-console.log("Remember:\nScissors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n(and as it always has) Rock crushes Scissors");
-
-
-function getComputerChoice(){
-    let random = Math.floor(Math.random() * 5);
-
-    if (random == 0) return "rock";
-    else if (random == 1) return "paper";
-    else if (random == 2) return "scissors";
-    else if (random == 3) return "lizard";
-    else return "spock";
+function startGame() {
+  document.getElementById('start-overlay').style.display = 'none';
+  gameStarted = true;
 }
 
+const rules = {
+    Rock: ["Scissors", "Lizard"],
+    Paper: ["Rock", "Spock"],
+    Scissors: ["Paper", "Lizard"],
+    Lizard: ["Spock", "Paper"],
+    Spock: ["Scissors", "Rock"]
+  };
 
-function getHumanChoice(){
-    let choice = prompt("Choose Rock, Paper, Scissors, Lizard, or Spock:");
-    return choice;
-}
+const ruleDescriptions = {
+    "Scissors:Paper": "Scissors cuts Paper",
+    "Paper:Rock": "Paper covers Rock",
+    "Rock:Lizard": "Rock crushes Lizard",
+    "Lizard:Spock": "Lizard poisons Spock",
+    "Spock:Scissors": "Spock smashes Scissors",
+    "Scissors:Lizard": "Scissors decapitates Lizard",
+    "Lizard:Paper": "Lizard eats Paper",
+    "Paper:Spock": "Paper disproves Spock",
+    "Spock:Rock": "Spock vaporizes Rock",
+    "Rock:Scissors": "(as it always has) Rock crushes Scissors",
+    "Rock:Rock": "Rock ties Rock",
+    "Scissors:Scissors": "Scissors ties Scissors",
+    "Lizard:Lizard": "Lizard ties Lizard",
+    "Spock:Spock": "Spock ties Spock",
+    "Paper:Paper": "Paper ties Paper",
+  };
+
+  let yourScore = 0;
+  let cpuScore = 0;
+  const winningScore = 5;
 
 
-function playRound(humanChoice, computerChoice, humanScore, computerScore){
-    humanChoice = humanChoice.toLowerCase();
-
-    if(humanChoice === computerChoice){
-        console.log("You: " + humanChoice + " , Computer: " + computerChoice);
-        console.log("DRAW");
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
+  function logRule(winner, loser) {
+    const key = `${winner}:${loser}`;
+    const description = ruleDescriptions[key];
+    if (description) {
+      const log = document.getElementById('rule-log');
+      const entry = document.createElement('div');
+      entry.textContent = description;
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight; // auto-scroll to bottom
     }
+  }
 
-    else if (humanChoice === "rock") {
-        if (computerChoice === "paper" || computerChoice === "spock") {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);   
-        console.log("LOSE");
-        computerScore = computerScore + 1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-        else {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);
-        console.log("WIN");
-        humanScore = humanScore+1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
+
+  function makeMove(playerChoice) {
+    if (yourScore >= winningScore || cpuScore >= winningScore) return;
+  
+    document.querySelectorAll('button').forEach(btn => {
+        btn.classList.remove('selected-user', 'selected-cpu');
+      });
+  
+    const choices = Object.keys(rules);
+    const cpuChoice = choices[Math.floor(Math.random() * choices.length)];
+  
+    // Display selections
+    document.getElementById('your-selection').innerText = "You: " + playerChoice;
+    document.getElementById('cpu-selection').innerText = "CPU: " + cpuChoice;
+  
+    // Add highlight to selected buttons
+    const playerBtn = document.getElementById(playerChoice.toLowerCase());
+    const cpuBtn = document.getElementById(cpuChoice.toLowerCase());
+  
+    if (playerBtn) playerBtn.classList.add('selected-user');
+    if (cpuBtn) cpuBtn.classList.add('selected-cpu');
+  
+    // Scoring
+    if (playerChoice === cpuChoice) {
+      // Tie
+      logRule(playerChoice, cpuChoice);
+    } else if (rules[playerChoice].includes(cpuChoice)) {
+      yourScore++;
+      logRule(playerChoice, cpuChoice);
+    } else {
+      cpuScore++;
+      logRule(cpuChoice, playerChoice);
     }
-
-    else if (humanChoice === "paper") {
-        if (computerChoice === "scissors" || computerChoice === "lizard") {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);   
-        console.log("LOSE");
-        computerScore = computerScore + 1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-        else {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);
-        console.log("WIN");
-        humanScore = humanScore+1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
+  
+    // Update scores
+    document.getElementById('your-score').innerText = "Your Score: " + yourScore;
+    document.getElementById('cpu-score').innerText = "CPU Score: " + cpuScore;
+  
+    // Check for game over
+    if (yourScore >= winningScore || cpuScore >= winningScore) {
+      const message = yourScore > cpuScore ? "Game Over - You Win!" : "Game Over - You Lose!";
+      document.getElementById('game-over-message').innerText = message;
+      document.getElementById('game-over-overlay').style.display = 'flex';
     }
-
-    else if (humanChoice === "scissors") {
-        if (computerChoice === "rock" || computerChoice === "spock") {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);   
-        console.log("LOSE");
-        computerScore = computerScore + 1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-        else {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);
-        console.log("WIN");
-        humanScore = humanScore+1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-    }
-
-    else if (humanChoice === "lizard") {
-        if (computerChoice === "rock" || computerChoice === "scissors") {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);   
-        console.log("LOSE");
-        computerScore = computerScore + 1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-        else {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);
-        console.log("WIN");
-        humanScore = humanScore+1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-    }
-
-    else if (humanChoice === "spock") {
-        if (computerChoice === "paper" || computerChoice === "lizard") {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);   
-        console.log("LOSE");
-        computerScore = computerScore + 1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-        else {
-        console.log("You: "+ humanChoice +" , Computer: " + computerChoice);
-        console.log("WIN");
-        humanScore = humanScore+1;
-        console.log("Your Score: " + humanScore + " , Computer's Score: " + computerScore);
-        }
-    }
-
-    else {
-        console.log("Invalid choice entered. Round suspended, try again.")
-    }
-
-    return [humanScore, computerScore]
-}
-
-
-function playGame(){
-    let humanScore = 0;
-    let computerScore = 0;
-    let i = 1;
-
-    while (humanScore < 5 && computerScore < 5) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-
-        [humanScore, computerScore] = playRound(humanChoice, computerChoice, humanScore, computerScore);
-
-        console.log("Round " + i + "\n");
-        i++;
-    }
-
-    if (humanScore == 5) console.log("Congratulations! You Win!");
-    else if(computerScore == 5) console.log("You Lose!");
-
-    console.log(i + " rounds played");
-}
-
-
-playGame();
+  }
+  
+  
