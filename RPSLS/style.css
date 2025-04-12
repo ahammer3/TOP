@@ -119,11 +119,11 @@ button {
     transform: translate(-50%, -50%);
   }
 
-.rock { background-color: #e74c3c; } /* red */
-.paper { background-color: #3498db; } /* blue */
-.scissors { background-color: #f1c40f; } /* yellow */
-.lizard { background-color: #2ecc71; } /* green */
-.spock { background-color: #9b59b6; } /* purple */
+.danny { background-color: #e74c3c; } /* red */
+.jason { background-color: #3498db; } /* blue */
+.sal { background-color: #f1c40f; } /* yellow */
+.vinny { background-color: #2ecc71; } /* green */
+.channy { background-color: #9b59b6; } /* purple */
 
 svg {
     position: absolute;
